@@ -1,0 +1,47 @@
+image: node:20
+
+stages:
+  - build
+  - deploy
+
+before_script:
+  # Check if ssh and rync are already installed
+  # Test
+  - |
+    if [ ! -f /usr/bin/ssh ] || [ ! -f /usr/bin/rsync ]; then
+      apt-get update -y
+      apt-get install -y sshpass
+    else
+      echo "Packages already installed, skipping installation."
+    fi
+
+build:
+  stage: build
+  script:
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+
+deploy:
+  stage: deploy
+  script:
+    - apt-get update -y
+    - apt-get install -y openssh-client rsync
+    - apt-get install -y sshpass
+    - mkdir -p ~/.ssh
+    - ssh-keyscan -p $SSH_PORT $SSH_HOST >> ~/.ssh/known_hosts
+    - sshpass -p "$SSH_PASSWORD" rsync -avz -e "ssh -p $SSH_PORT" dist/ $SSH_USERNAME@$SSH_HOST:/home/manar_school/public_html
+
+
+  only:
+    - master
+    - main
+
+# Cache to store node_modules for faster builds
+cache:
+  paths:
+    - node_modules/
+    - /usr/bin/ssh
+    - /usr/bin/sshpass
