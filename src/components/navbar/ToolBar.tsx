@@ -49,13 +49,11 @@ const ToolBar = () => {
     return (
         <div className='bg-[#7451ab] relative z-50 lg:px-20'>
             <div className="flex items-center justify-around lg:justify-center mx-auto p-2 w-full">
-                <button onClick={toggleMenu} className="text-white text-2xl lg:hidden">
-                    <FiMenu />
-                </button>
+            
 
                 <div className='flex flex-col justify-center items-center w-3/4 gap-1'>
                     <h2 className='lg:text-2xl text-white font-bold'>كاشير</h2>
-                    <div className='flex items-center justify-center gap-3 text-white'>
+                    <div className='flex flex-col md:flex-row items-center justify-center gap-3 text-white'>
                         <span>{formatDate(currentTime)}</span>
                         <div className='bg-white w-1 h-5'></div>
                         <span className='font-mono'>{formatTime(currentTime)}</span>

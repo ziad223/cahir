@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { FaCalendarAlt, FaUsers, FaAlipay, FaCcAmazonPay } from 'react-icons/fa';
+import { FaCalendarAlt, FaUsers, FaAlipay, FaCcAmazonPay, FaShoppingBag } from 'react-icons/fa';
 import { IoMdHome } from "react-icons/io";
 import { LiaFileInvoiceSolid } from "react-icons/lia";
 import { PiTextSubscriptFill } from "react-icons/pi";
@@ -9,7 +9,7 @@ import { FiMenu } from "react-icons/fi";
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import ToolBar from './ToolBar';
-import { FaGear } from 'react-icons/fa6';
+import { FaCartFlatbed, FaGear } from 'react-icons/fa6';
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -42,38 +42,44 @@ const Navbar = () => {
                                 {t('home')} <IoMdHome className='text-gray-500' />
                             </Link>
                         </li>
-                        <li>
+                         <li>
                             <Link href={`/${locale}/settings`} className='text-black flex items-center gap-1 text-sm'>
                                 {t('settings')} <FaGear className='text-gray-500' />
                             </Link>
                         </li>
                         <li>
-                            <Link href={`/${locale}/patients`} className='text-black flex items-center gap-1 text-sm'>
-                                {t('patients')} <FaUsers className='text-gray-500' />
+                            <Link href={`/${locale}/products`} className='text-black flex items-center gap-1 text-sm'>
+                                {t('products')} <FaShoppingBag   className='text-gray-500' />
                             </Link>
-                        </li>
-                        <li>
-                            <Link href={`/${locale}/appointments`} className='text-black flex items-center gap-1 text-sm'>{t('appointments')} <FaCalendarAlt className='text-gray-500' /></Link>
-                        </li>
-                        <li>
-                            <Link href={`/${locale}/appointments`}className='text-black flex items-center gap-1 text-sm'>{t('todayAppointments')} <FaCalendarAlt className='text-gray-500' /></Link>
                         </li>
                         
                         <li>
+                            <Link href={`/${locale}/clients`} className='text-black flex items-center gap-1 text-sm'>
+                                {t('clients')} <FaUsers className='text-gray-500' />
+                            </Link>
+                        </li>
+                         <li>
+                            <Link href={`/${locale}/suppliers`} className='text-black flex items-center gap-1 text-sm'>
+                                {t('suppliers')} <FaUsers className='text-gray-500' />
+                            </Link>
+                        </li>
+                         <li>
+                            <Link href={`/${locale}/purchases`} className='text-black flex items-center gap-1 text-sm'>
+                                {t('purchases')} <FaCartFlatbed className='text-gray-500' />
+                            </Link>
+                        </li>
+                       
+                        <li>
                             <Link href={`/${locale}/invoices`} className='text-black flex items-center gap-1 text-sm'>{t('invoices')} <LiaFileInvoiceSolid className='text-gray-500' /></Link>
                         </li>
-                        <li>
-                            <Link href={`/${locale}/pay-visit`} className='text-black flex items-center gap-1 text-sm'>{t('payVisit')} <FaAlipay className='text-gray-500' /></Link>
-                        </li>
+                      
                         <li>
                             <Link href={`/${locale}/treatment-plans`} className='text-black flex items-center gap-1 text-sm'>{t('subscriptions')} <PiTextSubscriptFill className='text-gray-500' /></Link>
                         </li>
                         <li>
                             <Link href={`/${locale}/pay_package`} className='text-black flex items-center gap-1 text-sm'>{t('payPackage')} <FaCcAmazonPay className='text-gray-500' /></Link>
                         </li>
-                        <li>
-                            <Link href={`/${locale}/case-study`} className='text-black flex items-center gap-1 text-sm'>{t('caseStudy')} <FaCcAmazonPay className='text-gray-500' /></Link>
-                        </li>
+                      
                     </ul>
                 </div>
 
